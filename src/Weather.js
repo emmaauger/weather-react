@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import "./Weather.css";
 import axios from "axios";
+import FormattedDate from "./FormattedDate";
 
-export default function Weather() {
+export default function Weather(props) {
   const [weatherData, setWeatherData] = useState({ ready: false });
   function handleResponse(response) {
-    console.log(response.data);
     setWeatherData({
       ready: true,
       temperature: response.data.main.temp,
@@ -13,11 +13,10 @@ export default function Weather() {
       humidity: response.data.main.humidity,
       wind: response.data.wind.speed,
       icon: "https://ssl.gstatic.com/onebox/weather/64/cloudy.png",
-      description: weatherData.data.weather[0].description,
-      date: "Wednesday 07:00",
+      description: response.data.weather[0].description,
+      date: new Date(response.data.dt * 1000),
       city: response.data.name,
     });
-    setReady(true);
   }
   if (weatherData.ready) {
     return (
@@ -43,13 +42,17 @@ export default function Weather() {
         </form>
         <h1>New York</h1>
         <ul>
-          <li>{weatherData.date}</li>
+          <li>
+            <FormattedDate date={weatherData.date} />
+          </li>
           <li className="text-capitalize">{weatherData.description}</li>
         </ul>
         <div className="row mt-3">
           <div className="col-6">
             <img src={weatherData.icon} alt={weatherData.description} />
-            <span className="temperature">{Math.round(temperature)}</span>
+            <span className="temperature">
+              {Math.round(weatherData.temperature)}
+            </span>
             <span className="unit">°C</span>
           </div>
           <div className="col-6">
@@ -64,7 +67,7 @@ export default function Weather() {
     );
   } else {
     const apiKey = "326468886cdb97f0a6e01a8cc558a9e3";
-    let city = "Sydney";
+    let city = props.defaultCity;
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
     axios.get(apiUrl).then(handleResponse);
     return "Loading...";
