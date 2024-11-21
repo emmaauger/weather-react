@@ -23,20 +23,16 @@
   line-height: 19px;
   list-style: none;
 }
-.Weather img {
-  height: 64px;
-  width: 64 px;
-  display: inline-block;
-  margin-right: 10px;
-  position: relative;
-  top: -12px;
+.Weather canvas {
+  line-height: 64px;
 }
-.Weather .temperature {
+.Weather .temperatureMain {
   font-weight: bold;
   color: rbg(33, 33, 33);
   font-size: 64px;
   font-weight: 400;
   line-height: 64px;
+  margin-left: 5px;
 }
 .Weather .unit {
   color: rbg(33, 33, 33);

@@ -15,15 +15,19 @@ export default function WeatherTemperature(props) {
     }
   }
 
-  return (
-    <span>
-      <span className="temperature">{temperature}</span>
-      <span className="unit">
-        °{unit[0]} | °
-        <a href="/" onClick={changeUnit}>
-          {unit[1]}
-        </a>
+  if (props.main) {
+    return (
+      <span>
+        <span className="temperatureMain">{temperature}</span>
+        <span className="unit">
+          °{unit[0]} | °
+          <a href="/" onClick={changeUnit}>
+            {unit[1]}
+          </a>
+        </span>
       </span>
-    </span>
-  );
+    );
+  } else {
+    return <span>{temperature}° </span>;
+  }
 }
