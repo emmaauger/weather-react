@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 
 export default function WeatherTemperature(props) {
-  const [unit, setUnit] = useState(["C","F]");
+  const [unit, setUnit] = useState(["C", "F"]);
   const [temperature, setTemperature] = useState(Math.round(props.celcius));
 
   function changeUnit(event) {
     event.preventDefault();
     if (unit[0] === "C") {
-      setUnit(["F","C");
+      setUnit(["F", "C"]);
       setTemperature(Math.round((props.celcius * 9) / 5 + 32));
     } else {
-      setUnit(["C","F");
+      setUnit(["C", "F"]);
       setTemperature(Math.round(props.celcius));
     }
   }
