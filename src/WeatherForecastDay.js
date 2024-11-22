@@ -10,7 +10,7 @@ export default function WeatherForecastDay(props) {
   ]);
   let select = useSelector((state) => state);
   let storeIdx = store.getState().units.length - 1;
-
+  console.log(props.data);
   function changeUnit() {
     if (store.getState().units[storeIdx].currentUnit[0] === "C") {
       let max = Math.round((props.data.temperature.maximum * 9) / 5 + 32);
@@ -39,8 +39,10 @@ export default function WeatherForecastDay(props) {
   return (
     <div>
       <div className="WeatherForecast-day">{day()}</div>
-      <WeatherIcon code="01n" size={32} />
-
+      <img
+        src={props.data.condition.icon_url}
+        alt={props.data.condition.icon}
+      />
       <div className="WeatherForecast-temperatures">
         <span className="WeatherForecast-temperature-max">
           {temperature[0]}°
