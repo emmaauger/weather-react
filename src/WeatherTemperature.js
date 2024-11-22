@@ -1,8 +1,16 @@
 import React, { useState } from "react";
+import store from "./store";
 
 export default function WeatherTemperature(props) {
   const [unit, setUnit] = useState(["C", "F"]);
   const [temperature, setTemperature] = useState(Math.round(props.celcius));
+
+  const updateGlobalState = () => {
+    const globUnit = unit;
+    if (isNaN(unit)) {
+      store.dispatch({ type: "updateUnit", payload: globUnit });
+    }
+  };
 
   function changeUnit(event) {
     event.preventDefault();
@@ -13,6 +21,7 @@ export default function WeatherTemperature(props) {
       setUnit(["C", "F"]);
       setTemperature(Math.round(props.celcius));
     }
+    updateGlobalState();
   }
 
   if (props.main) {
@@ -28,6 +37,12 @@ export default function WeatherTemperature(props) {
       </span>
     );
   } else {
-    return <span>{temperature}° </span>;
+    let storeIdx = store.getState().units.length - 1;
+    if (store.getState().units[storeIdx].currentUnit[0] === "F") {
+      return <span>{}° </span>;
+    } else {
+      setTemperature(Math.round((props.celcius * 9) / 5 + 32));
+      return <span>{}° </span>;
+    }
   }
 }
