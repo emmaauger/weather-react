@@ -6,7 +6,9 @@ export default function WeatherTemperature(props) {
   const [temperature, setTemperature] = useState(Math.round(props.celcius));
 
   useEffect(() => {
+    const defaultUnit = ["FC"];
     setTemperature(`${Math.round(props.celcius)}`);
+    setUnit(`${defaultUnit}`);
   }, [props.celcius]);
 
   const updateGlobalState = () => {
