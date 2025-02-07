@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import WeatherIcon from "./WeatherIcon";
 import store from "./store";
 import { useSelector } from "react-redux";
 
