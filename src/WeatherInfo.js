@@ -4,6 +4,7 @@ import WeatherTemperature from "./WeatherTemperature";
 import WeatherIcon from "./WeatherIcon";
 
 export default function WeatherInfo(props) {
+  console.log(props);
   return (
     <div>
       <h1>{props.data.city}</h1>

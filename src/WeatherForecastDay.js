@@ -10,11 +10,11 @@ export default function WeatherForecastDay(props) {
   ]);
   let select = useSelector((state) => state);
   let storeIdx = store.getState().units.length - 1;
-  console.log(props.data);
+  /*console.log(props.data);*/
   function changeUnit() {
-    if (store.getState().units[storeIdx].currentUnit[0] === "C") {
-      let max = Math.round((props.data.temperature.maximum * 9) / 5 + 32);
-      let min = Math.round((props.data.temperature.minimum * 9) / 5 + 32);
+    if (store.getState().units[storeIdx].currentUnit[0] === "F") {
+      let max = Math.round(((props.data.temperature.maximum - 32) * 5) / 9);
+      let min = Math.round(((props.data.temperature.minimum - 32) * 5) / 9);
       setTemperature([max, min]);
       return null;
     } else {
