@@ -7,7 +7,7 @@ export default function WeatherForecastDay(props) {
     props.data.temperature.maximum,
     props.data.temperature.minimum,
   ]);
-  let select = useSelector((state) => state);
+  let select = useSelector((state) => state.units.length);
   let storeIdx = store.getState().units.length - 1;
   /*console.log(props.data);*/
   function changeUnit() {
