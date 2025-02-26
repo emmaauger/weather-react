@@ -7,3 +7,7 @@
   opacity: 0.6;
   margin-left: 4px;
 }
+.WeatherForecast img {
+  line-height: 64px;
+  width: 40px;
+}

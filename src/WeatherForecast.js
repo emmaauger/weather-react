@@ -20,11 +20,11 @@ export default function WeatherForecast(props) {
     return (
       <div className="WeatherForecast">
         <div className="row">
-          {forecast.map(function (dailyForecast, index) {
+          {forecast.map(function (forecast, index) {
             if (index < 5) {
               return (
                 <div className="col" key={index}>
-                  <WeatherForecastDay data={dailyForecast} />
+                  <WeatherForecastDay data={forecast} />
                 </div>
               );
             } else {
@@ -36,8 +36,8 @@ export default function WeatherForecast(props) {
     );
   } else {
     const apiKey = "ob49b99a1ffea78e982t913f4a0ab03f";
-    let lon = props.coord.lon;
-    let lat = props.coord.lat;
+    let lon = props.coord.longitude;
+    let lat = props.coord.latitude;
     let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lat=${lat}&lon=${lon}&key=${apiKey}&units=imperial`;
     axios.get(apiUrl).then(handleResponse);
     return null;

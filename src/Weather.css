@@ -26,10 +26,7 @@
 .Weather canvas {
   line-height: 64px;
 }
-.Weather img {
-  line-height: 64px;
-  width: 40px;
-}
+
 .Weather .temperatureMain {
   font-weight: bold;
   color: rbg(33, 33, 33);
